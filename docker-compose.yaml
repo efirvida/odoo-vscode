@@ -26,6 +26,19 @@ services:
       - .:/workspace
       - ~/.ssh:/odoo/.ssh:ro
       - ~/.gitconfig:/odoo/.gitconfig:ro
+  
+  odoo-tests:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - db
+    command: >
+      /usr/bin/odoo --test-enable --stop-after-init -i crm_socials --database=test-db
+    env_file: .env
+    volumes:
+      - .:/workspace
+      - odoo_data:/var/lib/odoo
 
 volumes:
   postgres_odoo:
