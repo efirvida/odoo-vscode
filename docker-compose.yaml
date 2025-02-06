@@ -34,11 +34,15 @@ services:
     depends_on:
       - db
     command: >
-      /usr/bin/odoo --test-enable --stop-after-init -i crm_socials --database=test-db
+      sh -c "wait-for-it db:5432 --timeout=120 -- 
+      && coverage run $(which odoo) --test-enable --stop-after-init -i crm_socials
+      && coverage xml"
     env_file: .env
     volumes:
       - .:/workspace
       - odoo_data:/var/lib/odoo
+      - ./coverage.xml:/workspace/coverage.xml
+
 
 volumes:
   postgres_odoo:
