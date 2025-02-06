@@ -3,14 +3,25 @@
         <t t-call="website.layout">
             <div class="container mt-4">
                 <h1 class="text-center mb-4" style="color: #2c3e50;">Our Valued Customers</h1>
+				
+				<div class="row mb-4">
+                    <div class="col-12">
+                        <form class="d-flex justify-content-center" action="/search" method="get">
+                            <input type="text" t-att-value="query" name="q" class="form-control" placeholder="Search Customers" aria-label="Search"/>
+                            <button type="submit" class="btn btn-primary ms-2">Search</button>
+                        </form>
+                    </div>
+                </div>
+                <t t-if="query">
+                    <div class="alert alert-info text-center">
+                        <i class="fa fa-search me-2"></i>[<t t-esc="len(customers)"/>] Results for: <strong>"<t t-esc="query"/>"</strong>
+                    </div>
+                </t>
+
                 <t t-if="customers">
-                    <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4 mb-5">
-                    <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4">
                     <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4 mb-5">
                         <t t-foreach="customers" t-as="customer">
                             <div class="col">
-                                <div class="card bg-primary h-100 shadow-sm border-0 hover-effect">
-                                <div class="card h-100 shadow-sm border-0 hover-effect">
                                 <div class="card bg-primary h-100 shadow-sm border-0 hover-effect">
                                     <!-- Imagen del cliente -->
                                     <div t-if="customer.image_1920" class="card-img-container">
