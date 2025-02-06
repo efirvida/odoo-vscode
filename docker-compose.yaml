@@ -35,13 +35,12 @@ services:
       - db
     command: >
       sh -c "wait-for-it db:5432 --timeout=120 -- 
-      && coverage run $(which odoo) --test-enable --stop-after-init -i crm_socials
-      && coverage xml"
+      && coverage run $(which odoo) -d test-db --test-enable --stop-after-init -i crm_socials
+      && coverage report"
     env_file: .env
     volumes:
       - .:/workspace
       - odoo_data:/var/lib/odoo
-      - ./coverage.xml:/workspace/coverage.xml
 
 
 volumes:
