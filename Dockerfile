@@ -37,8 +37,8 @@ RUN curl -o wkhtmltox.deb -sSL https://github.com/wkhtmltopdf/packaging/releases
     && apt-get install -y --no-install-recommends ./wkhtmltox.deb \
     && rm -rf /var/lib/apt/lists/* wkhtmltox.deb
 
-RUN wget -O /usr/local/bin/wait-for-it https://github.com/vishnubob/wait-for-it/raw/master/wait-for-it.sh && \
-    chmod +x /usr/local/bin/wait-for-it && \
+RUN curl -o /usr/local/bin/wait-for-it -sSL https://github.com/vishnubob/wait-for-it/raw/master/wait-for-it.sh \
+    && chmod +x /usr/local/bin/wait-for-it
 
 # install latest postgresql-client
 RUN echo 'deb http://apt.postgresql.org/pub/repos/apt/ noble-pgdg main' > /etc/apt/sources.list.d/pgdg.list \
