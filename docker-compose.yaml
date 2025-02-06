@@ -1,0 +1,32 @@
+version: "3.8"
+
+services:
+  db:
+    image: postgres
+    env_file: .env
+    restart: always
+    volumes:
+      - postgres_odoo:/var/lib/postgresql/data
+
+  odoo:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - db
+    tty: true
+    restart: always
+    env_file: .env
+    ports:
+      - "8069:8069"
+      - "8071:8071"
+      - "8072:8072"
+    volumes:
+      - odoo_data:/var/lib/odoo
+      - .:/workspace
+      - ~/.ssh:/odoo/.ssh:ro
+      - ~/.gitconfig:/odoo/.gitconfig:ro
+
+volumes:
+  postgres_odoo:
+  odoo_data:

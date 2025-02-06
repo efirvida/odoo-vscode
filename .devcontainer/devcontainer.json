@@ -1,0 +1,17 @@
+{
+    "name": "Odoo",
+    "dockerComposeFile": ["../docker-compose.yaml"],
+    "service": "odoo",
+    "workspaceFolder": "/workspace",
+    "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "formulahendry.auto-close-tag",
+        "formulahendry.auto-rename-tag",
+        "fabianlauer.vs-code-xml-format",
+        "charliermarsh.ruff",
+        "ReprEng.csv",
+        "ryanluker.vscode-coverage-gutters"
+    ]
+}
+ 
