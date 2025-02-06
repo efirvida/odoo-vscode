@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="view_partners_form_crm_socials" model="ir.ui.view">
+        <field name="name">view.res.partner.form.crm_socials</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="crm.view_partners_form_crm1" />
+        <field name="priority" eval="1" />
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='internal_notes']" position="after">
+                <page name="social_links" string="Social Networks">
+                    <group>
+                        <field name="facebook_url" widget="url"/>
+                        <field name="linkedin_url" widget="url"/>
+                        <field name="x_url" widget="url"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>
