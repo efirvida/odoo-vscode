@@ -35,7 +35,7 @@ services:
       - db
     command: >
       sh -c "wait-for-it db:5432 --timeout=120 -- 
-      && coverage run $(which odoo) -d test-db --test-enable --stop-after-init -i crm_socials
+      && coverage run $(which odoo) -d test-db --test-enable --stop-after-init -i crm_socials --module crm_socials
       && coverage report"
     env_file: .env
     volumes:
