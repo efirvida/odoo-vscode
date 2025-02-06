@@ -38,4 +38,22 @@
             </xpath>
         </field>
     </record>
+
+    <record id="view_res_partner_filter_crm_socials" model="ir.ui.view">
+        <field name="name">res.partner.search.inherit.profile_completed</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_res_partner_filter"/>  
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='type_company']" position="after">
+                <filter name="profile_incomplete"
+                        string="Profile Complete"
+                        domain="[('is_profile_completed', '=', True)]"/>
+                <filter name="profile_incomplete"
+                        string="Profile Incomplete"
+                        domain="[('is_profile_completed', '=', False)]"/>
+            </xpath>
+        </field>
+    </record>
+
+
 </odoo>

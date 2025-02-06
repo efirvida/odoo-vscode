@@ -9,7 +9,9 @@ class SocialLinks(models.Model):
     facebook_url = fields.Char(string="Facebook URL", translate=True)
     linkedin_url = fields.Char(string="LinkedIn URL", translate=True)
     x_url = fields.Char(string="X URL", translate=True)
-    is_profile_completed = fields.Boolean(compute="_compute_profile_completed")
+    is_profile_completed = fields.Boolean(
+        compute="_compute_profile_completed", index=True, store=True
+    )
 
     @api.depends("facebook_url", "linkedin_url", "x_url")
     def _compute_profile_completed(self) -> None:
