@@ -31,8 +31,7 @@ RUN apt-get update \
         python3-xlwt \
         xz-utils \
         ttf-mscorefonts-installer \
-        git \
-    && fc-cache -fv
+        git
 
 RUN curl -o wkhtmltox.deb -sSL https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6.1-3/wkhtmltox_0.12.6.1-3.jammy_amd64.deb \
     && apt-get install -y --no-install-recommends ./wkhtmltox.deb \
@@ -57,16 +56,10 @@ RUN npm install -g rtlcss
 
 # Install Odoo
 ENV ODOO_VERSION 18.0
-
-# RUN curl -o odoo.deb -sSL http://nightly.odoo.com/${ODOO_VERSION}/nightly/deb/odoo_${ODOO_VERSION}.latest_all.deb \
-#     && apt-get update \
-#     && apt-get -y install --no-install-recommends ./odoo.deb \
-#     && rm -rf /var/lib/apt/lists/* odoo.deb
-
-COPY ./odoo.deb /tmp/odoo.deb
-RUN apt-get update \
-    && apt-get -y install --no-install-recommends /tmp/odoo.deb \
-    && rm -rf /var/lib/apt/lists/* /tmp/odoo.deb
+RUN curl -o odoo.deb -sSL http://nightly.odoo.com/${ODOO_VERSION}/nightly/deb/odoo_${ODOO_VERSION}.latest_all.deb \
+    && apt-get update \
+    && apt-get -y install --no-install-recommends ./odoo.deb \
+    && rm -rf /var/lib/apt/lists/* odoo.deb
 
 COPY ./config/requirements.txt /tmp/requirements.txt
 RUN pip3 install --no-cache-dir --break-system-packages -r /tmp/requirements.txt \
@@ -87,5 +80,4 @@ EXPOSE 8069 8071 8072
 
 USER ubuntu
 
-# CMD ["odoo","--dev","xml","-d","odoo-dev","-i","base"]
 CMD ["/bin/bash"]
