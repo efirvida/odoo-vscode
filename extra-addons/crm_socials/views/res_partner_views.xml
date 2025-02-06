@@ -6,6 +6,20 @@
         <field name="inherit_id" ref="crm.view_partners_form_crm1" />
         <field name="priority" eval="1" />
         <field name="arch" type="xml">
+            <xpath expr="//field[@name='category_id']" position="after">
+                <div class="o_row" style="display: flex; align-items: center;">
+                    <field name="is_profile_completed" invisible="1" style="margin-right: 5px;"/>
+                    <span style="margin-right: 10px; font-weight: bold;">
+                        Profile Complete:
+                    </span>
+                    <span class="fa fa-check-circle fa-lg text-success"
+                        invisible="is_profile_completed == False"
+                        title="Profile is complete"/>
+                    <span class="fa fa-exclamation-circle fa-lg text-danger"
+                        invisible="is_profile_completed != False"
+                        title="Profile is incomplete"/>
+                </div>
+            </xpath>
             <xpath expr="//page[@name='internal_notes']" position="after">
                 <page name="social_links" string="Social Networks">
 					<div class="o_row" style="display: flex; align-items: center;">
