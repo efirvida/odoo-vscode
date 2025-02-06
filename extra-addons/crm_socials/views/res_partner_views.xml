@@ -8,11 +8,18 @@
         <field name="arch" type="xml">
             <xpath expr="//page[@name='internal_notes']" position="after">
                 <page name="social_links" string="Social Networks">
-                    <group>
-                        <field name="facebook_url" widget="url"/>
-                        <field name="linkedin_url" widget="url"/>
-                        <field name="x_url" widget="url"/>
-                    </group>
+					<div class="o_row" style="display: flex; align-items: center;">
+						<span class="fa fa-facebook-official fa-lg" title="Facebook URL" />
+						<field name="facebook_url" widget="url" />
+					</div>
+					<div class="o_row" style="display: flex; align-items: center;">
+						<span class="fa fa-linkedin fa-lg" title="LinkedIn URL" />
+						<field name="linkedin_url" widget="url" />
+					</div>
+					<div class="o_row" style="display: flex; align-items: center;">
+						<span class="fa fa-twitter fa-lg" title="X URL" />
+						<field name="x_url" widget="url" />
+					</div>
                 </page>
             </xpath>
         </field>
